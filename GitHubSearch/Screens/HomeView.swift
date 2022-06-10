@@ -11,6 +11,7 @@ struct HomeView: View {
     
     // MARK: - Properties
     
+    //@StateObject private var viewModel:
     
     // MARK: - Body
     var body: some View {
@@ -24,11 +25,11 @@ struct HomeView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
                 leading: HStack {
-                    TextField("Search...",
-                              text: $text,
-                              onCommit: {
-                        
-                    })
+//                    TextField("Search...",
+//                              text: $text,
+//                              onCommit: {
+//                        
+//                    })
                 })
         }
         
