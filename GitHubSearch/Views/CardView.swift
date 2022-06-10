@@ -49,9 +49,37 @@ struct CardView: View {
                 .font(.title)
                 .fontWeight(.bold)
             
+            HStack {
+                Text(input.language ?? "")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                
+                HStack(spacing: 4) {
+                    Image(systemName: "star")
+                        .renderingMode(.template)
+                        .foregroundColor(.gray)
+                    
+                    Text(String(input.star))
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }
             
+            } //: langs and stars
             
+            Text(input.description ?? "")
+                .foregroundColor(.black)
+                // To remove line limit, set nil
+                .lineLimit(nil)
         }
+        .padding(24)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.gray, lineWidth: 1)
+        )
+        .frame(minWidth: 140, minHeight: 180)
+        .padding()
     }
 }
 
