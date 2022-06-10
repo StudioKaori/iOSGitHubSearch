@@ -15,6 +15,7 @@
 		43836C282853592A00A199A8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C272853592A00A199A8 /* HomeView.swift */; };
 		43836C2B28535BFD00A199A8 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C2A28535BFD00A199A8 /* Repository.swift */; };
 		43836C2E28535C7E00A199A8 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C2D28535C7E00A199A8 /* Owner.swift */; };
+		43836C3028535CC700A199A8 /* SearchRepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C2F28535CC700A199A8 /* SearchRepositoryResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		43836C272853592A00A199A8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		43836C2A28535BFD00A199A8 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		43836C2D28535C7E00A199A8 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		43836C2F28535CC700A199A8 /* SearchRepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				43836C2A28535BFD00A199A8 /* Repository.swift */,
 				43836C2D28535C7E00A199A8 /* Owner.swift */,
+				43836C2F28535CC700A199A8 /* SearchRepositoryResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43836C3028535CC700A199A8 /* SearchRepositoryResponse.swift in Sources */,
 				43836C192853515600A199A8 /* ContentView.swift in Sources */,
 				43836C2E28535C7E00A199A8 /* Owner.swift in Sources */,
 				43836C282853592A00A199A8 /* HomeView.swift in Sources */,
