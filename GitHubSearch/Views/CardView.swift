@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CardView: View {
     
+    // MARK: - Properties
+    
     // To use foreach, use Identifiable
     struct Input: Identifiable {
         let id: UUID = UUID()
@@ -26,6 +28,7 @@ struct CardView: View {
         self.input = input
     }
     
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading) {
             
@@ -40,12 +43,29 @@ struct CardView: View {
                 // Add border line
                 .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                 .shadow(color: .gray, radius: 1, x: 0, y: 0)
+             
+            Text(input.title)
+                .foregroundColor(.black)
+                .font(.title)
+                .fontWeight(.bold)
+            
+            
+            
         }
     }
 }
 
+// MARK: - Preview
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView()
+        CardView(input:
+                .init(
+                    iconImage: UIImage(systemName: "person")!,
+                    title: "SwiftUI",
+                    language: "Swift",
+                    star: 28000,
+                    description: "Declare the user interface and behavior for your app on every platform.",
+                    url: "https:exmaple.com"))
+        .previewLayout(.sizeThatFits)
     }
 }
