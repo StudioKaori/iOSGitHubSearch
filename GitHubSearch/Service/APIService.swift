@@ -8,6 +8,16 @@
 import Foundation
 import Combine
 
+protocol APIRequestType {
+    associatedtype Response: Decodable
+    
+    var path: String { get }
+    var queryItems: [URLQueryItem]? { get }
+}
+
+// Where clause
+// Using Generics with where Request: APIRequestType clause
+// Specify the generics type must inherites APIRequestType (Don't need to be exact APIRequestType.)
 protocol APIServiceType {
     func request<Request>(with request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType
 }
@@ -22,7 +32,11 @@ final class APIService: APIServiceType {
     }
     
     func request<Request>(with request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request : APIRequestType {
-        <#code#>
+        
+        guard let pathURL = URL(string: request.path, relativeTo: URL(string: baseURLString)) else {
+            return Fail(error: APIServiceError.invalidURL)
+                .eraseToAnyPublisher()
+        }
     }
     
 }
