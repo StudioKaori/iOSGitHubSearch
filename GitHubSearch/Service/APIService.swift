@@ -8,4 +8,6 @@
 import Foundation
 import Combine
 
-
+protocol APIServiceType {
+    func request<Request>(with request: Request) -> AnyPublisher<Request.Response, APIServiceError> where Request: APIRequestType
+}

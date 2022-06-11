@@ -10,5 +10,5 @@ import Foundation
 enum APIServiceError: Error {
     case invalidURL
     case responseError
-    case parseError
+    case parseError(Error)
 }
