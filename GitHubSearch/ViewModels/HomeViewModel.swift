@@ -17,4 +17,16 @@ final class HomeViewModel: ObservableObject {
         case onCommit(text: String)
         case tappedCardView(urlString: String)
     }
+    
+    // MARK: - Output
+    // CardView.Input - repository information
+    @Published private(set) var cardViewInputs: [CardView.Input]
+    // text in text field
+    @Published var inputText: String = ""
+    @Published var isShowError = false
+    @Published var isLoading = false
+    @Published var isShowSheet = false
+    @Published var repositoryUrl: String = ""
+    
+    
 }
