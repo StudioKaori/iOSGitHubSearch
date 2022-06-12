@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import UIKit
+import SwiftUI
 
 final class HomeViewModel: ObservableObject {
     
@@ -60,11 +61,14 @@ final class HomeViewModel: ObservableObject {
                 apiService.request(with:
                                     SearchRepositoryRequest(query: query))
                     .catch { [weak self] error ->
+                        // return value is Empty publisher, no stream
+                        // give error stream
                         Empty<SearchRepositoryResponse, Never> in
                         self?.errorSubject.send(error)
                         return .init()
                     }
             }
+            // convert SearchRepositoryResponse to [Repository]
             .map { $0.items }
             .sink(receiveValue: { [weak self] (repositories) in
                 guard let self = self else { return }
@@ -80,5 +84,22 @@ final class HomeViewModel: ObservableObject {
         
     }
     
+    
+    private func convertInput(repositories: [Repository]) -> [CardView.Input] {
+        return repositories.compactMap { (repo) -> CardView.Input? in
+            guard let url = URL(string: repo.owner.avatarUrl) else {
+                return nil
+            }
+            let data = try? Data(contentsOf: url)
+            let image = UIImage(data: data ?? Data()) ?? UIImage()
+            return CardView.Input(iconImage: image,
+                                  title: repo.name,
+                                  language: repo.language,
+                                  star: repo.stargazersCount,
+                                  description: repo.description,
+                                  url: repo.htmlUrl)
+
+        }
+    }
 
 }
