@@ -39,6 +39,7 @@ struct HomeView: View {
                     TextField("Search...",
                               text: $text,
                               onCommit: {
+                        viewModel.apply(inputs: .onCommit(text: text))
 
                     })
                 })
