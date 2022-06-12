@@ -29,4 +29,23 @@ final class HomeViewModel: ObservableObject {
     @Published var repositoryUrl: String = ""
     
     
+    // MARK: - Properties
+    private let apiService: APIServiceType
+    // A subject emits the event when a user has done input
+    private let onCommitSubject = PassthroughSubject<String, Never>()
+    // A subject emits the event when the search has done
+    private let responseSubject = PassthroughSubject<SearchRepositoryResponse, Never>()
+    // A subject emits the event when an error occurs
+    private let errorSubject = PassthroughSubject<APIServiceError, Never>()
+    private var cancellables: [AnyCancellable] = []
+    
+    private func bind() {
+        let responseSubscriber = onCommitSubject
+            .flatMap(<#T##transform: (String) -> Publisher##(String) -> Publisher#>)
+    }
+    
+    init(apiService: APIServiceType) {
+        self.apiService = apiService
+        bind()
+    }
 }
