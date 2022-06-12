@@ -19,6 +19,7 @@
 		43836C3228535D1900A199A8 /* SearchRepositoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C3128535D1900A199A8 /* SearchRepositoryRequest.swift */; };
 		43836C3528535DD900A199A8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C3428535DD900A199A8 /* APIService.swift */; };
 		43836C372854D08400A199A8 /* APIServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C362854D08400A199A8 /* APIServiceError.swift */; };
+		43836C392855C69600A199A8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43836C382855C69600A199A8 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		43836C3128535D1900A199A8 /* SearchRepositoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryRequest.swift; sourceTree = "<group>"; };
 		43836C3428535DD900A199A8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		43836C362854D08400A199A8 /* APIServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceError.swift; sourceTree = "<group>"; };
+		43836C382855C69600A199A8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				43836C262853527D00A199A8 /* Views */,
 				43836C1A2853515800A199A8 /* Assets.xcassets */,
 				43836C1C2853515800A199A8 /* Preview Content */,
+				43836C3A2855C69C00A199A8 /* ViewModels */,
 			);
 			path = GitHubSearch;
 			sourceTree = "<group>";
@@ -121,6 +124,14 @@
 				43836C3428535DD900A199A8 /* APIService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		43836C3A2855C69C00A199A8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				43836C382855C69600A199A8 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43836C3028535CC700A199A8 /* SearchRepositoryResponse.swift in Sources */,
+				43836C392855C69600A199A8 /* HomeViewModel.swift in Sources */,
 				43836C372854D08400A199A8 /* APIServiceError.swift in Sources */,
 				43836C192853515600A199A8 /* ContentView.swift in Sources */,
 				43836C2E28535C7E00A199A8 /* Owner.swift in Sources */,
