@@ -11,7 +11,8 @@ struct HomeView: View {
     
     // MARK: - Properties
     
-    //@StateObject private var viewModel:
+    @StateObject private var viewModel: HomeViewModel = .init(apiService: APIService())
+    @State private var text = ""
     
     // MARK: - Body
     var body: some View {
@@ -28,7 +29,7 @@ struct HomeView: View {
 //                    TextField("Search...",
 //                              text: $text,
 //                              onCommit: {
-//                        
+//
 //                    })
                 })
         }
