@@ -37,6 +37,30 @@ final class APIService: APIServiceType {
             return Fail(error: APIServiceError.invalidURL)
                 .eraseToAnyPublisher()
         }
+        
+        var urlComponents = URLComponents(url: pathURL, resolvingAgainstBaseURL: true)!
+        urlComponents.queryItems = request.queryItems
+        var request = URLRequest(url: urlComponents.url!)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let decorder = JSONDecoder()
+        decorder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        // Returns publisher
+        return URLSession.shared.dataTaskPublisher(for: request)
+            // return data
+            .map { data, urlResponse in data }
+            // returns error
+            .mapError { _ in APIServiceError.responseError }
+            .decode(type: Request.Response.self, decoder: decorder)
+            .mapError ({ (error) -> APIServiceError in
+                APIServiceError.parseError(error)
+            })
+            // receive the stream in the main thread
+            .receive(on: RunLoop.main)
+            // Remove publisher type
+            .eraseToAnyPublisher()
+        
     }
     
 }
