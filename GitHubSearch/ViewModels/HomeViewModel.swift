@@ -28,6 +28,10 @@ final class HomeViewModel: ObservableObject {
     @Published var isShowSheet = false
     @Published var repositoryUrl: String = ""
     
+    init(apiService: APIServiceType) {
+        self.apiService = apiService
+        bind()
+    }
     
     // MARK: - Properties
     private let apiService: APIServiceType
@@ -40,12 +44,25 @@ final class HomeViewModel: ObservableObject {
     private var cancellables: [AnyCancellable] = []
     
     private func bind() {
-        let responseSubscriber = onCommitSubject
-            .flatMap(<#T##transform: (String) -> Publisher##(String) -> Publisher#>)
+//        let responseSubscriber = onCommitSubject
+//            // The resulting flattened array.
+//            .flatMap { [apiService] (query) in
+//                apiService.request(with:
+//                                    SearchRepositoryRequest(query: query)
+//                    .catch { [weak self] error ->
+//                        Empty<SearchRepositoryResponse, Never> in
+//                        self?.errorSubject.send(error)
+//                        return .init()
+//                    }
+//                )
+//
+//            }
+//            .map
+        
+        let loadingStartSubscriber = onCommitSubject
+            .map { _ in true }
+            .assign(to: \.isLoading, on: self)
     }
     
-    init(apiService: APIServiceType) {
-        self.apiService = apiService
-        bind()
-    }
+
 }
