@@ -20,17 +20,27 @@ struct HomeView: View {
         NavigationView {
             
             ScrollView(showsIndicators: false) {
-                
+                if viewModel.isLoading {
+                    Text("Loading...")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                        .offset(x: 0, y: -200)
+                        .navigationBarTitle("", displayMode: .inline)
+                } else {
+//                    ScrollView(showsIndicators: false) {
+//                        ForEach
+//                    }
+                }
             }
             .padding()
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
                 leading: HStack {
-//                    TextField("Search...",
-//                              text: $text,
-//                              onCommit: {
-//
-//                    })
+                    TextField("Search...",
+                              text: $text,
+                              onCommit: {
+
+                    })
                 })
         }
         
