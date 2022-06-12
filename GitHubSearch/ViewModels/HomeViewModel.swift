@@ -20,7 +20,7 @@ final class HomeViewModel: ObservableObject {
     
     // MARK: - Output
     // CardView.Input - repository information
-    @Published private(set) var cardViewInputs: [CardView.Input]
+    @Published private(set) var cardViewInputs: [CardView.Input] = []
     // text in text field
     @Published var inputText: String = ""
     @Published var isShowError = false
@@ -31,6 +31,16 @@ final class HomeViewModel: ObservableObject {
     init(apiService: APIServiceType) {
         self.apiService = apiService
         bind()
+    }
+    
+    func apply(inputs: Inputs) {
+        switch inputs {
+        case .onCommit(let inputText):
+            onCommitSubject.send(inputText)
+        case .tappedCardView(let urlString):
+            repositoryUrl = urlString
+            isShowSheet = true
+        }
     }
     
     // MARK: - Properties
@@ -44,24 +54,30 @@ final class HomeViewModel: ObservableObject {
     private var cancellables: [AnyCancellable] = []
     
     private func bind() {
-//        let responseSubscriber = onCommitSubject
-//            // The resulting flattened array.
-//            .flatMap { [apiService] (query) in
-//                apiService.request(with:
-//                                    SearchRepositoryRequest(query: query)
-//                    .catch { [weak self] error ->
-//                        Empty<SearchRepositoryResponse, Never> in
-//                        self?.errorSubject.send(error)
-//                        return .init()
-//                    }
-//                )
-//
-//            }
-//            .map
+        let responseSubscriber = onCommitSubject
+            .flatMap { [apiService] (query) in
+                // The resulting flattened array.
+                apiService.request(with:
+                                    SearchRepositoryRequest(query: query))
+                    .catch { [weak self] error ->
+                        Empty<SearchRepositoryResponse, Never> in
+                        self?.errorSubject.send(error)
+                        return .init()
+                    }
+            }
+            .map { $0.items }
+            .sink(receiveValue: { [weak self] (repositories) in
+                guard let self = self else { return }
+                self.cardViewInputs = self.convertInput(repositories: repositories)
+                self.inputText = ""
+                self.isLoading = false
+            })
         
         let loadingStartSubscriber = onCommitSubject
             .map { _ in true }
             .assign(to: \.isLoading, on: self)
+        
+        
     }
     
 
